@@ -17,18 +17,18 @@ def thrFunc(idx)
     begin
       Travis::Lock.exclusive('locklock', @options) do
         puts "thr_#{idx} has lock"
-        n = 100
+        n = 10
         while n > 0 do
           puts "#{idx}: #{n}"
           n -=1
-          sleep(0.01)
+          sleep(0.41)
         end
         done = true
       end
     rescue Travis::Lock::Redis::LockError => e
       puts "thr_#{idx} ERROR : #{e.message}"
     end
-    sleep(0.1)
+ #   sleep(0.1)
   end
 puts "thr_#{idx}--"
 end
